@@ -27,6 +27,7 @@ class TestData(Base):
     timestamp = Column(DateTime)
     variable_1 = Column(Integer)
     variable_2 = Column(Float)
+    #Aquí iba la variable_3 pero esta fue borrada ya que el API no contempla esta variable
     
 # Crear la conexión a la base de datos SQLite3 o PostgreSQL
 engine = create_engine(system)
