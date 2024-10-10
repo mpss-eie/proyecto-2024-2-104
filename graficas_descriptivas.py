@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # Cargar la base de datos
 db_path = 'proyecto.db'  # Asegúrate de que la ruta sea correcta
-data = pd.read_sql('SELECT variable_1, variable_2 FROM test_data', 'sqlite:///' + db_path)
+data = pd.read_sql('SELECT variable_1, variable_2 FROM test_data', 'sqlite:///' + db_path);print(variable_1)
 
 # Crear histograma para variable_1
 plt.figure(figsize=(10, 5))

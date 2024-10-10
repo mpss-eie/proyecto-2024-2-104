@@ -1,0 +1,23 @@
+# Ignorar entorno virtual
+env/
+venv/
+.venv/
+
+# Ignorar archivos generados por Python
+*.py[cod]
+__pycache__/
+*.pyo
+*.pyd
+
+# Ignorar archivos de logs y temporales
+*.log
+*.tmp
+*.swp
+
+# Ignorar archivos de configuraciones específicas del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de Excel y similares
+*.xlsx
+*.xls
