@@ -1,3 +1,4 @@
+
 site_name: Proyecto de Programación de Modelos Probabilísticos
 
 nav:
@@ -22,6 +23,7 @@ theme:
     - toc.integrate
     - content.tooltips
     - content.code.copy
+    - pymdownx.arithmatex
 
 markdown_extensions:
   - admonition
@@ -41,3 +43,4 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+

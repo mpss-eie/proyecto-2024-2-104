@@ -1,50 +1,48 @@
-# Proyecto de programación
+# Avance Proyecto de programación 
 
-Esta es la documentación del proyecto de programación de IE0405 - Modelos Probabilísticos de Señales y Sistemas.
+**Integrantes del grupo**
 
-Los objetivos están en esta página mientras que una introducción a los temas de recopilación, procesamiento y modelado de datos están en páginas aparte. Finalmente están las instrucciones específicas del proyecto.
+1. Denzel Darío Guzmán Carranza
+2. Josué García Blandón
 
-## Objetivos
+En esta documentación se observará la exploración de los datos realizada 
+tras su recopilación.
 
-!!! note "Objetivo general"
-    Implementar una canalización de datos (*pipeline*) en tiempo real para procesamiento y análisis a partir de una fuente de datos externa, utilizando las herramientas computacionales de Python.
+Dentro de la base de datos llamada como proyecto.db se guardan los datos recopilados
+y, aprovechando las herramientas de programación de python se definirán los aspectos
+escenciales de la distribución de probabilidad que conforman las variables 1 y 2.
 
-### Objetivos específicos de *programación*
+## Definiciones importantes
 
-1. Configurar tareas periódicas
-2. Recopilar datos de un API web
-3. Procesar datos en formato JSON
-4. Utilizar bases de datos SQL
-5. Documentar resultados 
+!!! note "Función de distribución de probabilidad"
+    La función de densidad de probabilidad se define como la probabilidad
+    según la cual una variable aleatoria puede adquirir un valor determinado 
 
-### Objetivos específicos de *estadística y probabilidad*
+!!! note "Histograma"
+    Un histograma se define brevemente como una forma de representación gráfica
+    de la recurrencia con la que sucede un determinado evento. Sirve para simbolizar
+    la distribución de un conjunto de datos.
 
-1. Realizar análisis exploratorios de datos con estadística descriptiva (media, varianza, etc.)
-2. Determinar modelos de probabilidad y sus parámetros
-3. Graficar datos y sus modelos
-4. Encontrar una expresión analítica para una transformación de variables aleatorias
-5. Comparar los datos de la variable transformada con el modelo analítico
+### Tipos de modelos de distribución de probabilidad
 
-### Objetivos específicos de *aplicación*
+1. Distribución normal
+2. Exponencial
+3. Rayleigh
+4. Uniforme
+5. Bernoulli
+6. Boltzmann
 
-4. Explorar fuentes de datos en tiempo real para su recopilación y análisis.
-5. Utilizar interfaces de programación de aplicaciones (API) de forma programática para obtener datos de fuentes externas.
-6. Utilizar administradores de tareas (Celery Worker) y planificadores de tareas (Celery Beat) para ejecutar tareas periódicas.
-7. Utilizar un manejador de bases de datos (SQLite3, PostgreSQL) y un mapeador de objetos relacional (SQLAlchemy) para interactuar con bases de datos.
-8.  Procesar los datos obtenidos para tratamiento y análisis.
-9.  Utilizar herramientas estadísticas de Python para hacer análisis estadístico descriptivo y modelado probabilístico de los datos recopilados.
-10. Graficar los datos recopilados y sus análisis para visualización y análisis preliminar.
-11. Crear documentación del proyecto en forma de página web para presentación al público en general.
+Y muchos otros modelos de distribución, tantos que no sería recomendable agregarlos
+todos a la lista.
 
-## Sobre la documentación
+### Pasos realizados para la recopilación de *datos*
 
-Esta documentación está creada con [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), una plataforma amplísima con múltiples opciones de formato.
+1. Importantísimo siempre activar el ambiente de python antes de realizar cualquier acción. 
+2. En tres terminales separadas activar redis-server, celery tasks y celery beat con el fin de iniciar la toma de datos.
+3. Eliminar la variable 3 del código del repositorio ya que esta no está contemplada en el funcionamiento regular.
+4. Una vez el código esté trabajando consistentemente, dejarlo activo en segundo plano durante al menos 12 horas seguidas.
+5. Asegurarse de que los datos se estén actualizando con cada ciclo y que el número de datos aumente de forma gradual a medida que pasan las horas.
 
-En el archivo `mkdocs.yml` está la configuración básica de esta documentación, la cual debe ser modificada (especialmente la navegación) para incluir las secciones de la documentación del proyecto y sus resultados.
+### Repositorio remoto y github
+Para la realización de este proyecto es sumamente importante mantener un contacto ordenado y coordinado con los miembros del grupo. Es por ello que la plataforma github es sumamente útil para mejorar la coordinación y agilizar el trabajo.
 
-En la carpeta `img/` pueden colocar imágenes como gráficas y similares.
-
-Pueden agregar la estructura de archivos y carpetas que sea necesaria.
-
-!!! warning "Contenidos de la documentación del proyecto"
-    Para la documentación de su proyecto, deben eliminar los textos del enunciado y solamente agregar la explicación propia de su trabajo. Eso incluye esta sección y las de recopilación, procesamiento y otras.
