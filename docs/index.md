@@ -22,7 +22,7 @@ escenciales de la distribución de probabilidad que conforman las variables 1 y 
     Un histograma se define brevemente como una forma de representación gráfica
     de la recurrencia con la que sucede un determinado evento. Sirve para simbolizar
     la distribución de un conjunto de datos.
-
+    
 ### Tipos de modelos de distribución de probabilidad
 
 1. Distribución normal
@@ -45,4 +45,5 @@ todos a la lista.
 
 ### Repositorio remoto y github
 Para la realización de este proyecto es sumamente importante mantener un contacto ordenado y coordinado con los miembros del grupo. Es por ello que la plataforma github es sumamente útil para mejorar la coordinación y agilizar el trabajo.
+
 
