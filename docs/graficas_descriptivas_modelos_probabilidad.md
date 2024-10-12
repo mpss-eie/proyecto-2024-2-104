@@ -65,3 +65,10 @@ Añadiendo una lógica extra al programa, se puede aproximar los modelos de dist
 ![Modelos de mejor ajuste](img/Mejor ajuste.jpeg)
 
 Observando la figura anterior se puede deducir que la función de densidad que mejor se ajusta a la variable 1 es de Rayleigh, mientras que, para el caso de la variable 2 es un poco más complicado de ya que parece ser hasta cierto punto constante, pero también exponencial. Dada está incertidumbre, se decide que la función de densidad que mejor se ajusta a la variable 2 es de tipo exponencial.
+
+De forma que, los modelos de probabilidad que mejor se ajustan a las variables 1 y 2 se pueden resumir en la siguiente tabla resumen.
+
+
+|                  | `variable_1`  | `variable_2`  |
+|-------------------------|---------------|---------------|
+| **Modelo**               | Rayleigh      | Exponencial      |

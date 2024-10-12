@@ -1,6 +1,6 @@
 # Momentos de probabilidad de los datos
 
-En esta sección presentamos los momentos estadísticos calculados para `variable_1` y `variable_2` usando dos conjuntos de datos diferentes: un conjunto de datos recolectados durante 12 horas y una muestra más pequeña de 50 datos.
+En esta sección presentamos los momentos estadísticos calculados para `variable_1` y `variable_2` usando dos conjuntos de datos diferentes: un conjunto de datos recolectados durante 12 horas usando los programas `tasks.py` y `models.py` y el otro corresponde a una muestra más pequeña de 50 datos con el fin de aproximar el cálculo de los momentos a mano.
 
 ## Momentos de `variable_1` y `variable_2`
 
