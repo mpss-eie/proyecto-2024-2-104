@@ -39,12 +39,14 @@ def test_task(url, group):
 
         timestamp = datetime.strptime(data["timestamp"], "%Y-%m-%d %H:%M:%S")
         sample_size = data["sample_size"]
+        sunlight = data["sunlight"]
+        
         for sample in range(sample_size):
             record = TestData(
                 group=group,
                 timestamp=timestamp,
-                variable_1=data["variable_1"][sample],
-                variable_2=data["variable_2"][sample],
+                data=data["data"][sample],
+                sunlight=sunlight,
             )
             session.add(record)
             session.commit()

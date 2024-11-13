@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Boolean
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 import configparser
 
@@ -25,8 +25,8 @@ class TestData(Base):
     id = Column(Integer, primary_key=True)
     group = Column(String)
     timestamp = Column(DateTime)
-    variable_1 = Column(Integer)
-    variable_2 = Column(Float)
+    data = Column(Integer)
+    sunlight = Column(Boolean)
     #Aquí iba la variable_3 pero esta fue borrada ya que el API no contempla esta variable
     
 # Crear la conexión a la base de datos SQLite3 o PostgreSQL
