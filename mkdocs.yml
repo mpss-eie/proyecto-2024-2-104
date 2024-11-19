@@ -5,6 +5,7 @@ nav:
   - Inicio: index.md
   - Gráfcas descriptivas y modelos de probabilidad: graficas_descriptivas_modelos_probabilidad.md
   - Momentos: momentos_var1_var2.md
+  - Procesos_aleatorios: parte_2.md
 
 
 theme: 
