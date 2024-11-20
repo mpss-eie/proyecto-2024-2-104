@@ -8,7 +8,7 @@ df = pd.read_sql_query("SELECT * FROM test_data", conn)
 conn.close()
 
 # Filtrar los datos para minutes_from_midnight = 626.05
-target_minutes = 626.05
+target_minutes = 553.5
 filtered_data = df[df['minutes_from_midnight'] == target_minutes]['data'].dropna()
 
 # Verificar si hay datos disponibles después del filtro
@@ -17,8 +17,8 @@ if filtered_data.empty:
 else:
     # Seleccionar las distribuciones que quieres probar
     distributions = [
-        'norm', 'expon', 'uniform', 'triang', 'pareto', 'gompertz', 'johnsonsb',
-        'logistic', 'rayleigh', 'rice'
+        'norm', 'expon', 'gompertz', 'levy',
+        'logistic', 'rayleigh'
     ]
     
     # Ajustar las distribuciones a los datos de 'filtered_data'

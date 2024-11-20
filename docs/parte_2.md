@@ -105,3 +105,21 @@ Observando la figura, se notan dos aspectos interesantes. Los puntos amarillos s
 !!! info "Condiciones para que un proceso aleatorio sea estacionario en sentido amplio (WSL)"
     1. **El valor esperado (media) no depende del tiempo**: La media del proceso debe ser constante a lo largo del tiempo.
     2. **La función de autocovarianza solo depende de la diferencia de tiempos**: La autocovarianza debe depender únicamente de la diferencia entre los tiempos, no de los tiempos absolutos.
+
+Recurriendo nuevamente a la gráfica de promedio tempora, se observa que, para sunlight = 0 el promedio temporal puede decirse que permanece constante. Ahora bien, realizando la prueba de autocorrelación con el programa ```wsl.py``` se obtienen los resultados que se muestran en la siguiente tabla:
+
+## Prueba de autocorrelación
+
+| valor 1 | valor 2 | tau | R_{xx}(\tau)|
+|---------|---------|-----|-------------|
+|   -322   |   -282.75   |  42.2  |    0.9999757428      |
+|   148.2   |   190.75   |  42.55  |   0.9999784399      |
+|   -63.6   |   -21.08333332   |  42.52  |     0.99998   |
+|   252.45   |   294.15   |  41.7  |    0.9999755838     |
+
+Como se observa, al mantener relativamente constante el diferencial de tiempo, la autocorrelación permanece casi totalmente constante, esto sumado a que la media temporal para sunlight = 0 es también relativamente constante alrededor de 1. Es razonable afirmar que el proceso es **estacionario en sentido amplio** entre las 6 a.m y las 6 p.m
+
+Si se realiza este proceso con más instantes de tiempo, se podrá observar como la autocorrelación permanecerá constante para todos estos. El proceso no se automatizó debido a las ligeras variaciones en los diferenciales de tiempo. Es decir que la distancia entre cada uno es ligeramente distinta, lo cual hace dificil la creación de un código que permita realizar muchas más pruebas.
+
+## Prueba de ergodicidad
+

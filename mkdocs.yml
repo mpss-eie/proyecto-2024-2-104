@@ -6,6 +6,7 @@ nav:
   - Gráfcas descriptivas y modelos de probabilidad: graficas_descriptivas_modelos_probabilidad.md
   - Momentos: momentos_var1_var2.md
   - Procesos_aleatorios: parte_2.md
+  - Función de densidad de probabilidad: densidad.md 
 
 
 theme: 
@@ -38,11 +39,12 @@ markdown_extensions:
   - footnotes
   - abbr
   - attr_list
-
   - pymdownx.snippets:
       auto_append:
         - includes/abbreviations.md
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.arithmatex:
+      generic: true
 
