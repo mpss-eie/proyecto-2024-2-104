@@ -51,3 +51,41 @@ Este código permite obtener el modelo de distribución que mejor se ajusto con 
 ```Para minutes_from_midnight = 553.5, la mejor distribución es: expon, con los parámetros: {'loc': 0.04768446100892672, 'scale': 2.6305185025999633}```
 
 Como se observa, los parámetros de la distribución cambian con el tiempo y siguen la función de densidad de probabilidad exponencial. Utilizando el programa ```parameters.py``` se crea una nueva base de datos llamada ```parameters.db``` cuya tabla es ```parameters_data```. Se extraen los datos de timestamp, minutes_from_midnight y sunlight de ```proyecto.db``` y luego, con el programa ``` parameters_expon.py``` se calculan los parámetros ```loc``` y ```scale``` de los datos según su timestamp siguiendo una distribución exponencial aprovechando el comando ```fit.expon``` 
+
+Una vez sabiendo el modelo de la distribución, cuya función de densidad de probabilidad sigue la siguiente ecuación:
+
+$$f(x, \lambda) =
+\begin{cases}
+\lambda e^{-\lambda x}, & \text{si } x \geq 0 \\
+0, & \text{si } x < 0
+\end{cases}$$
+
+donde $\lambda$ depende del tiempo, es decir que se puede reescribir de la siguiente forma:
+
+$$f(x, \lambda(t)) =
+\begin{cases}
+\lambda(t) e^{-\lambda(t) x}, & \text{si } x \geq 0 \\
+0, & \text{si } x < 0
+\end{cases}$$
+
+Ahora, para encontrar el parámetro $\lambda$ se utiliza la media temporal variante, es decir cuando sunlight=1. Para ello, se apela a la siguiente figura:
+
+![Ecuación de mejor ajuste de la media temporal](img/grafico_ajustado_mejor_ajuste.png)
+
+Por teoría, se sabe que la ecuación de ajuste observada en la gráfica es $\mu(t)$ y que existe una relación entre el parámetro $\lambda$ y $\mu$ como se muestra en la siguiente ecuación:
+
+$$
+\mu(t) = \frac{1}{\lambda(t)}
+$$
+
+$$
+\lambda(t) = \frac{1}{-0,000017t^{2}+0,024163t-5,505220}
+$$
+
+Finalmente, la función de densidad de probabilidad quedaría de la siguiente manera:
+
+$$f(t, \lambda(t)) =
+\begin{cases}
+\left(\frac{1}{-0,000017t^{2}+0,024163t-5,505220}\right)e^{-\left(\frac{1}{-0,000017t^{2}+0,024163t-5,505220}\right)t}, & \text{si } t \geq 0 \\
+0, & \text{si } t < 0
+\end{cases}$$

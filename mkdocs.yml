@@ -6,8 +6,7 @@ nav:
   - Gráfcas descriptivas y modelos de probabilidad: graficas_descriptivas_modelos_probabilidad.md
   - Momentos: momentos_var1_var2.md
   - Procesos_aleatorios: parte_2.md
-  - Función de densidad de probabilidad: densidad.md 
-
+  - Función de densidad de probabilidad: densidad.md
 
 theme: 
   name: material
@@ -23,7 +22,6 @@ theme:
     - toc.integrate
     - content.tooltips
     - content.code.copy
-    - pymdownx.arithmatex
 
 markdown_extensions:
   - admonition
@@ -35,7 +33,6 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - md_in_html
   - footnotes
   - abbr
   - attr_list
@@ -48,3 +45,5 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
