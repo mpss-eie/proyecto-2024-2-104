@@ -102,15 +102,15 @@ La figura que se observa al ejecutar el código se muestra a continuación:
 
 Observando la figura, se notan dos aspectos interesantes. Los puntos amarillos son aquellos datos que están relacionados cuando es de día (sunlight = 1) y los datos azules son aquellos relacionados cuando es de noche (sunlight = 0). Si se toma todo el proceso, es claro que este no es estacionario en sentido amplio. No obstante, cuando es de noche, el promedio permanece relativamente constante, por lo que es necesario realizar pruebas que demuestren si este es estacionario en sentido amplio o no.
 
-!!! info "Condiciones para que un proceso aleatorio sea estacionario en sentido amplio (WSL)"
+!!! info "Condiciones para que un proceso aleatorio sea estacionario en sentido amplio (WSS)"
     1. **El valor esperado (media) no depende del tiempo**: La media del proceso debe ser constante a lo largo del tiempo.
     2. **La función de autocovarianza solo depende de la diferencia de tiempos**: La autocovarianza debe depender únicamente de la diferencia entre los tiempos, no de los tiempos absolutos.
 
-Recurriendo nuevamente a la gráfica de promedio tempora, se observa que, para sunlight = 0 el promedio temporal puede decirse que permanece constante. Ahora bien, realizando la prueba de autocorrelación con el programa ```wsl.py``` se obtienen los resultados que se muestran en la siguiente tabla:
+Recurriendo nuevamente a la gráfica de promedio tempora, se observa que, para sunlight = 0 el promedio temporal puede decirse que permanece constante. Ahora bien, realizando la prueba de autocorrelación con el programa ```wss.py``` se obtienen los resultados que se muestran en la siguiente tabla:
 
 ## Prueba de autocorrelación
 
-| valor 1 | valor 2 | tau | R_{xx}(\tau)|
+| valor 1 | valor 2 | $\tau$ | $R_{xx}(\tau)$|
 |---------|---------|-----|-------------|
 |   -322   |   -282.75   |  42.2  |    0.9999757428      |
 |   148.2   |   190.75   |  42.55  |   0.9999784399      |
@@ -123,3 +123,52 @@ Si se realiza este proceso con más instantes de tiempo, se podrá observar como
 
 ## Prueba de ergodicidad
 
+Para determinar si un proceso es ergódico, es importante resaltar dos aspectos fundamentales:
+
+!!! info "Condiciones para que un proceso aleatorio sea ergódico"
+    1. **Estacionaridad en sentido amplio**: El proceso debe ser estacionario en sentido amplio (wss).
+    2. **La media temporal igual a la media estadística**: $\overline{x} = \overline{X}$.
+
+Para distinguir la ergodicidad del proceso se emplea el código de python ```ergodicidad.py``` cuyo funcionamiento se basa en tomar el primer valor de cada timestamp de datos cuando sunlight es cero y calcular el promedio de estos. El código utilizado se muestra a continuación:
+
+```python title="ergodicidad.py"
+import sqlite3
+
+# Conectar a la base de datos
+db_path = "proyecto.db"  # Ruta de tu base de datos
+conn = sqlite3.connect(db_path)
+cursor = conn.cursor()
+
+# Consulta SQL para obtener el promedio
+query = """
+WITH RankedData AS (
+    SELECT 
+        timestamp, 
+        data,
+        ROW_NUMBER() OVER (PARTITION BY timestamp ORDER BY ROWID) AS row_num
+    FROM test_data
+    WHERE sunlight = 0
+)
+SELECT AVG(data) AS average_data
+FROM RankedData
+WHERE row_num = 1;
+"""
+
+# Ejecutar la consulta
+cursor.execute(query)
+result = cursor.fetchone()
+
+# Mostrar el resultado
+average_data = result[0]
+print(f"El promedio de los primeros valores de 'data' para cada 'timestamp' con 'sunlight' = 0 es: {average_data}")
+
+# Cerrar la conexión
+conn.close()
+```
+Al ejecutar el programa se obtiene el siguiente resultado:
+
+$$
+\overline{x} = 1.0228689182508934
+$$
+
+Observando nuevamente la gráfica de la media temporal $\overline{X}$ cuando sunlight es cero la media se encuentra cerca de 1, por lo que, dado lo anterior se puede confirmar que hasta cierto punto el proceso es ergódico cuando es de noche.

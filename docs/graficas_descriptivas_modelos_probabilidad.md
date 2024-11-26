@@ -60,23 +60,13 @@ plt.grid(True, axis='y', linestyle='--', alpha=0.6)  # Añadir una cuadrícula l
 plt.tight_layout(pad=3.0)  # Aumentar separación entre gráficas
 plt.show()
 ```
-Ahora bien, al correr este programa se obtienen los resultados que se muestran a continuación.
+Se añadieron más "bins" al programa con el fin de poder visualizar más rectángulos y observar mejor la distribución de probabilidad. Esto le da mayor resolución:
+![Histogramas con mayor resolucion](img/histograma_mayor_resolucion.png)
+![Mejor ajusto con mayor resolucion](img/mejor_ajuste.png)
 
-![Histogramas](img/Histograma_variables.jpeg)
-
-Añadiendo una lógica extra al programa, se puede aproximar los modelos de distribución de mejor ajuste para los histogramas generados. Esto aplicando una normalización de la frecuencia, lo cual se puede observar a continuación.
-
-![Modelos de mejor ajuste](img/Mejor ajuste.jpeg)
-
-Observando la figura anterior se puede deducir que la función de densidad que mejor se ajusta a la variable 1 es de Rayleigh, mientras que, para el caso de la variable 2 es un poco más complicado de ya que parece ser hasta cierto punto constante, pero también exponencial. Dada está incertidumbre, se decide que la función de densidad que mejor se ajusta a la variable 2 es de tipo exponencial.
-
-De forma que, los modelos de probabilidad que mejor se ajustan a las variables 1 y 2 se pueden resumir en la siguiente tabla resumen.
-
+Observando las figuras y la curva de mejor ajuste, se puede deducir que, los modelos de distribución son Rayleigh para la variable 1 y Exponencial para la variable 2. Esto se puede observar de mejor manera en el cuadro a continuaicón, que resume los resultados anteriores.
 
 |                  | `variable_1`  | `variable_2`  |
 |-------------------------|---------------|---------------|
 | **Modelo**               | Rayleigh      | Exponencial      |
 
-Se añadieron más "bins" al programa con el fin de poder visualizar más rectángulos y observar mejor la distribución de probabilidad. Esto le da mayor resolución:
-![Histogramas con mayor resolucion](img/histograma_mayor_resolucion.png)
-![Mejor ajusto con mayor resolucion](img/mejor_ajuste.png)

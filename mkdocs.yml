@@ -7,6 +7,7 @@ nav:
   - Momentos: momentos_var1_var2.md
   - Procesos_aleatorios: parte_2.md
   - Función de densidad de probabilidad: densidad.md
+  - Potencia promedio del proceso aleatorio: potencia_promedio.md
 
 theme: 
   name: material
