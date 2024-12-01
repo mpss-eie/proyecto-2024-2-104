@@ -5,7 +5,7 @@ nav:
   - Inicio: index.md
   - Gráfcas descriptivas y modelos de probabilidad: graficas_descriptivas_modelos_probabilidad.md
   - Momentos: momentos_var1_var2.md
-  - Procesos_aleatorios: parte_2.md
+  - Procesos aleatorios: parte_2.md
   - Función de densidad de probabilidad: densidad.md
   - Potencia promedio del proceso aleatorio: potencia_promedio.md
   - Análisis de resultados y conclusiones: analisis_conclusiones.md
