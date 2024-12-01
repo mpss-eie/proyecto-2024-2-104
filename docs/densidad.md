@@ -50,7 +50,8 @@ Este código permite obtener el modelo de distribución que mejor se ajusto con 
 
 ```Para minutes_from_midnight = 553.5, la mejor distribución es: expon, con los parámetros: {'loc': 0.04768446100892672, 'scale': 2.6305185025999633}```
 
-Como se observa, los parámetros de la distribución cambian con el tiempo y siguen la función de densidad de probabilidad exponencial. Utilizando el programa ```parameters.py``` se crea una nueva base de datos llamada ```parameters.db``` cuya tabla es ```parameters_data```. Se extraen los datos de timestamp, minutes_from_midnight y sunlight de ```proyecto.db``` y luego, con el programa ``` parameters_expon.py``` se calculan los parámetros ```loc``` y ```scale``` de los datos según su timestamp siguiendo una distribución exponencial aprovechando el comando ```fit.expon``` 
+Como se observa, los parámetros de la distribución cambian con el tiempo y siguen la función de densidad de probabilidad exponencial. Utilizando el programa ```parameters.py``` se crea una nueva base de datos llamada ```parameters.db``` cuya tabla es ```parameters_data```. Se extraen los datos de timestamp, minutes_from_midnight y sunlight de ```proyecto.db``` y luego, con el programa ``` parameters_expon.py``` se calculan los parámetros ```loc``` y ```scale``` de los datos según su timestamp siguiendo una distribución exponencial aprovechando el comando ```fit.expon```. En la siguiente gráfica se muestra el histograma de los datos asociados con la noche (sunlight = 0) con el fin de observar la curva exponencial.
+![Distribucion exponencial](img/distribucion_expon.png)
 
 Una vez sabiendo el modelo de la distribución, cuya función de densidad de probabilidad sigue la siguiente ecuación:
 
@@ -78,8 +79,11 @@ $$
 \mu(t) = \frac{1}{\lambda(t)}
 $$
 
+Para efectos simples, de acuerdo con la documentación para las funciones de densidad de probabilidad de fitter, el parámetro loc para una exponencial es típicamente cero, mientras que el parámetro scale tiene la particularidad de ser igual al inverso del parámetro lambda, es decir que la curva de mejor ajuste para la media variante con el tiempo es igual a la curva de mejor ajuste del parámetro scale.
+
+
 $$
-\lambda(t) = \frac{1}{-0,000017t^{2}+0,024163t-5,505220}
+\lambda(t) = \frac{1}{scale(t)} =\frac{1}{-0,000017t^{2}+0,024163t-5,505220}
 $$
 
 Finalmente, la función de densidad de probabilidad quedaría de la siguiente manera:

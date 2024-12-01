@@ -8,6 +8,7 @@ nav:
   - Procesos_aleatorios: parte_2.md
   - Función de densidad de probabilidad: densidad.md
   - Potencia promedio del proceso aleatorio: potencia_promedio.md
+  - Análisis de resultados y conclusiones: analisis_conclusiones.md
 
 theme: 
   name: material

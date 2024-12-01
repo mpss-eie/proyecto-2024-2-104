@@ -26,7 +26,7 @@ result = cursor.fetchone()
 
 # Mostrar el resultado
 average_data = result[0]
-print(f"El promedio de los primeros valores de 'data' para cada 'timestamp' con 'sunlight' = 0 es: {average_data}")
+print(f"El promedio temporal de la función muestra de los primeros valores de 'data' para cada 'timestamp' con 'sunlight' = 0 es: {average_data}")
 
 # Cerrar la conexión
 conn.close()
