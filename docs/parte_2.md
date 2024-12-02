@@ -100,6 +100,8 @@ conn.close()
 La figura que se observa al ejecutar el código se muestra a continuación:
 ![Promedio Temporal](img/promedio_temporal.png)
 
+## Estacionaridad del proceso
+
 Observando la figura, se notan dos aspectos interesantes. Los puntos amarillos son aquellos datos que están relacionados cuando es de día (sunlight = 1) y los datos azules son aquellos relacionados cuando es de noche (sunlight = 0). Si se toma todo el proceso, es claro que este no es estacionario en sentido amplio. No obstante, cuando es de noche, el promedio permanece relativamente constante, por lo que es necesario realizar pruebas que demuestren si este es estacionario en sentido amplio o no.
 
 !!! info "Condiciones para que un proceso aleatorio sea estacionario en sentido amplio (WSS)"
@@ -172,3 +174,7 @@ $$
 $$
 
 Observando nuevamente la gráfica de la media temporal $\overline{X}$ cuando sunlight es cero la media se encuentra cerca de 1, por lo que, dado lo anterior se puede confirmar que hasta cierto punto el proceso es ergódico cuando es de noche.
+
+## Conclusiones de sección
+
+A partir de las pruebas de estacionaridad y ergodicidad, se pudo observar que, analizando la totalidad del proceso este no se consideraría estacionario en sentido ámplio (wss) pero, cortando una sección de tiempo donde el proceso parece ser constante y realizando las pruebas de estacionaridad, se deduce que, para la noche el proceso es estacionario en sentido amplio. Por otra parte, a partir de las pruebas de ergodicidad se concluye que la media estadística es igual a la media temporal, por lo tanto, el proceso es ergódico durante la noche
