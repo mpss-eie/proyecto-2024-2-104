@@ -1,0 +1,826 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../momentos_var1_var2/">
+      
+      
+        <link rel="next" href="../densidad/">
+      
+      
+      <link rel="icon" href="../img/plot.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+    
+    
+      
+        <title>Procesos aleatorios - Avance de Proyecto de Programación de Modelos Probabilísticos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#procesos-aleatorios" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Avance de Proyecto de Programación de Modelos Probabilísticos" class="md-header__button md-logo" aria-label="Avance de Proyecto de Programación de Modelos Probabilísticos" data-md-component="logo">
+      
+  <img src="../img/plot.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Avance de Proyecto de Programación de Modelos Probabilísticos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Procesos aleatorios
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../graficas_descriptivas_modelos_probabilidad/" class="md-tabs__link">
+        
+  
+    
+  
+  Gráfcas descriptivas y modelos de probabilidad
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../momentos_var1_var2/" class="md-tabs__link">
+        
+  
+    
+  
+  Momentos
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Procesos aleatorios
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../densidad/" class="md-tabs__link">
+        
+  
+    
+  
+  Función de densidad de probabilidad
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../potencia_promedio/" class="md-tabs__link">
+        
+  
+    
+  
+  Potencia promedio del proceso aleatorio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../analisis_conclusiones/" class="md-tabs__link">
+        
+  
+    
+  
+  Análisis de resultados y conclusiones
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Avance de Proyecto de Programación de Modelos Probabilísticos" class="md-nav__button md-logo" aria-label="Avance de Proyecto de Programación de Modelos Probabilísticos" data-md-component="logo">
+      
+  <img src="../img/plot.png" alt="logo">
+
+    </a>
+    Avance de Proyecto de Programación de Modelos Probabilísticos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graficas_descriptivas_modelos_probabilidad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gráfcas descriptivas y modelos de probabilidad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../momentos_var1_var2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Momentos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Procesos aleatorios
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Procesos aleatorios
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#procesos-aleatorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procesos aleatorios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#promedio-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Promedio temporal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estacionaridad-del-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estacionaridad del proceso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prueba-de-autocorrelacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prueba de autocorrelación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prueba-de-ergodicidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prueba de ergodicidad
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusiones-de-seccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusiones de sección
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../densidad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Función de densidad de probabilidad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../potencia_promedio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Potencia promedio del proceso aleatorio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analisis_conclusiones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Análisis de resultados y conclusiones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Procesos aleatorios</h1>
+
+<h2 id="procesos-aleatorios">Procesos aleatorios</h2>
+<p>En esta segunda parte del proyecto, se buscan estudiar los procesos aleatorios y aspectos de suma importancia como es el caso de la función de densidad de probabilidad de un proceso aleatorio, definir si un proceso es ergódigo, si es estacionario en sentido amplio y la función de densidad de potencia.</p>
+<p>Durante esta sección se estudiarán 3 puntos escenciales:</p>
+<ol>
+<li>Determinación de la función de densidad de probabilidad</li>
+<li>Determinación de la estacionaridad en sentido amplio y ergodicidad</li>
+<li>Determinación de potencia promedio</li>
+</ol>
+<p>Para cumplir con los puntos anteriormente descritos, se debe primero recopilar durante 24 horas los datos de una API y guardarlos en una base de datos. Luego, se convierte el timestamo de los datos a minutos respecto a la media noche del día siguiente. Es decir que, si la toma de datos inició en 2024/11/13 el minuto 0 está dispuesto para 2024/11/14 00:00:00. Entonces, si la toma inició a la 1 de la tarde del 13 de noviembre del 2024, el valor en la columna "minutes_from_midnight" para este valor será -620 minutos. para el caso de la 1 de la tarde del 14 de noviembre, el valor será de 780 minutos. Esto se logra gracias al código que se muestra a continuación:</p>
+<div class="highlight"><span class="filename">time_since_12.py</span><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># Conectar a la base de datos y cargar la tabla en un DataFrame</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;proyecto.db&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM test_data&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="c1"># Convertir &#39;timestamp&#39; a formato datetime si no lo está ya</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
+
+<span class="c1"># Definir la medianoche del 14 de noviembre de 2024 (sin necesidad de recalcular en cada fila)</span>
+<span class="n">midnight_nov_14</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2024-11-14 00:00:00&#39;</span><span class="p">)</span>
+
+<span class="c1"># Vectorización: Calcular los minutos en función de si es antes o después de la medianoche</span>
+<span class="n">before_midnight</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">midnight_nov_14</span>
+<span class="n">after_midnight</span> <span class="o">=</span> <span class="o">~</span><span class="n">before_midnight</span>
+
+<span class="c1"># Calcular minutos negativos para los valores antes de la medianoche</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">before_midnight</span><span class="p">,</span> <span class="s1">&#39;minutes_from_midnight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">before_midnight</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">midnight_nov_14</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">60</span>
+
+<span class="c1"># Calcular minutos positivos para los valores después de la medianoche</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">after_midnight</span><span class="p">,</span> <span class="s1">&#39;minutes_from_midnight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">after_midnight</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">midnight_nov_14</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">60</span>
+
+<span class="c1"># Depuración limitada a las primeras filas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ejemplo de cálculos:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;minutes_from_midnight&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Guardar el DataFrame actualizado en la base de datos</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;test_data&#39;</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Base de datos actualizada con la nueva columna &#39;minutes_from_midnight&#39;.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="promedio-temporal">Promedio temporal</h2>
+<p>Gracias a la nueva columna recientemente añadida, se pueden separar los datos en bloques de 100 desde el primer bloque y calcular el promedio de cada punto y observarlo en una gráfica. Esto se logra gracias al siguiente código:</p>
+<p><div class="highlight"><span class="filename">promedio_temporal.py</span><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Conectar a la base de datos y cargar la tabla en un DataFrame</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;proyecto.db&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM test_data&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="c1"># Asegurarse de que la columna &#39;minutes_from_midnight&#39; esté calculada</span>
+<span class="c1"># (debe estar calculada previamente como en los pasos anteriores)</span>
+
+<span class="c1"># Agrupamos los datos en bloques de 100 elementos</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">//</span> <span class="mi">100</span>  <span class="c1"># Crear un grupo por cada 100 datos</span>
+
+<span class="c1"># Calcular el promedio de &#39;data&#39; para cada grupo de 100 datos y asociarlo con &#39;minutes_from_midnight&#39;</span>
+<span class="n">grouped_data_avg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">avg_data</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">),</span>  <span class="c1"># Promedio de la columna &#39;data&#39;</span>
+    <span class="n">minutes_from_midnight</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;minutes_from_midnight&#39;</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span><span class="p">),</span>  <span class="c1"># Tomamos el primer valor de &#39;minutes_from_midnight&#39; para cada grupo</span>
+    <span class="n">sunlight</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sunlight&#39;</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span><span class="p">)</span>  <span class="c1"># Tomamos el primer valor de &#39;sunlight&#39; para cada grupo</span>
+<span class="p">)</span>
+
+<span class="c1"># Crear una lista de colores basada en la columna &#39;sunlight&#39;</span>
+<span class="n">grouped_data_avg</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grouped_data_avg</span><span class="p">[</span><span class="s1">&#39;sunlight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span> <span class="k">if</span> <span class="n">x</span> <span class="k">else</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c1"># Graficar el promedio de &#39;data&#39; a lo largo de &#39;minutes_from_midnight&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Graficamos con los colores basados en &#39;sunlight&#39;</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grouped_data_avg</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;minutes_from_midnight&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;avg_data&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">])</span>
+
+<span class="c1"># Etiquetas y título</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutos desde la Medianoche&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Promedio de la Columna &quot;data&quot;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Promedio de los Datos a lo Largo del Tiempo con Influencia del &quot;Sunlight&quot;&#39;</span><span class="p">)</span>
+
+<span class="c1"># Agregar leyenda</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sunlight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;No Sunlight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Mostrar la gráfica</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Cerrar la conexión a la base de datos</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+La figura que se observa al ejecutar el código se muestra a continuación:
+<img alt="Promedio Temporal" src="../img/promedio_temporal.png" /></p>
+<h2 id="estacionaridad-del-proceso">Estacionaridad del proceso</h2>
+<p>Observando la figura, se notan dos aspectos interesantes. Los puntos amarillos son aquellos datos que están relacionados cuando es de día (sunlight = 1) y los datos azules son aquellos relacionados cuando es de noche (sunlight = 0). Si se toma todo el proceso, es claro que este no es estacionario en sentido amplio. No obstante, cuando es de noche, el promedio permanece relativamente constante, por lo que es necesario realizar pruebas que demuestren si este es estacionario en sentido amplio o no.</p>
+<div class="admonition info">
+<p class="admonition-title">Condiciones para que un proceso aleatorio sea estacionario en sentido amplio (WSS)</p>
+<ol>
+<li><strong>El valor esperado (media) no depende del tiempo</strong>: La media del proceso debe ser constante a lo largo del tiempo.</li>
+<li><strong>La función de autocovarianza solo depende de la diferencia de tiempos</strong>: La autocovarianza debe depender únicamente de la diferencia entre los tiempos, no de los tiempos absolutos.</li>
+</ol>
+</div>
+<p>Recurriendo nuevamente a la gráfica de promedio tempora, se observa que, para sunlight = 0 el promedio temporal puede decirse que permanece constante. Ahora bien, realizando la prueba de autocorrelación con el programa <code>wss.py</code> se obtienen los resultados que se muestran en la siguiente tabla:</p>
+<h2 id="prueba-de-autocorrelacion">Prueba de autocorrelación</h2>
+<table>
+<thead>
+<tr>
+<th>valor 1</th>
+<th>valor 2</th>
+<th><span class="arithmatex">\(\tau\)</span></th>
+<th><span class="arithmatex">\(R_{xx}(\tau)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-322</td>
+<td>-282.75</td>
+<td>42.2</td>
+<td>0.9999757428</td>
+</tr>
+<tr>
+<td>148.2</td>
+<td>190.75</td>
+<td>42.55</td>
+<td>0.9999784399</td>
+</tr>
+<tr>
+<td>-63.6</td>
+<td>-21.08333332</td>
+<td>42.52</td>
+<td>0.99998</td>
+</tr>
+<tr>
+<td>252.45</td>
+<td>294.15</td>
+<td>41.7</td>
+<td>0.9999755838</td>
+</tr>
+</tbody>
+</table>
+<p>Como se observa, al mantener relativamente constante el diferencial de tiempo, la autocorrelación permanece casi totalmente constante, esto sumado a que la media temporal para sunlight = 0 es también relativamente constante alrededor de 1. Es razonable afirmar que el proceso es <strong>estacionario en sentido amplio</strong> entre las 6 a.m y las 6 p.m</p>
+<p>Si se realiza este proceso con más instantes de tiempo, se podrá observar como la autocorrelación permanecerá constante para todos estos. El proceso no se automatizó debido a las ligeras variaciones en los diferenciales de tiempo. Es decir que la distancia entre cada uno es ligeramente distinta, lo cual hace dificil la creación de un código que permita realizar muchas más pruebas.</p>
+<h2 id="prueba-de-ergodicidad">Prueba de ergodicidad</h2>
+<p>Para determinar si un proceso es ergódico, es importante resaltar dos aspectos fundamentales:</p>
+<div class="admonition info">
+<p class="admonition-title">Condiciones para que un proceso aleatorio sea ergódico</p>
+<ol>
+<li><strong>Estacionaridad en sentido amplio</strong>: El proceso debe ser estacionario en sentido amplio (wss).</li>
+<li><strong>La media temporal igual a la media estadística</strong>: <span class="arithmatex">\(\overline{x} = \overline{X}\)</span>.</li>
+</ol>
+</div>
+<p>Para distinguir la ergodicidad del proceso se emplea el código de python <code>ergodicidad.py</code> cuyo funcionamiento se basa en tomar el primer valor de cada timestamp de datos cuando sunlight es cero y calcular el promedio de estos. El código utilizado se muestra a continuación:</p>
+<p><div class="highlight"><span class="filename">ergodicidad.py</span><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># Conectar a la base de datos</span>
+<span class="n">db_path</span> <span class="o">=</span> <span class="s2">&quot;proyecto.db&quot;</span>  <span class="c1"># Ruta de tu base de datos</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="c1"># Consulta SQL para obtener el promedio</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">WITH RankedData AS (</span>
+<span class="s2">    SELECT </span>
+<span class="s2">        timestamp, </span>
+<span class="s2">        data,</span>
+<span class="s2">        ROW_NUMBER() OVER (PARTITION BY timestamp ORDER BY ROWID) AS row_num</span>
+<span class="s2">    FROM test_data</span>
+<span class="s2">    WHERE sunlight = 0</span>
+<span class="s2">)</span>
+<span class="s2">SELECT AVG(data) AS average_data</span>
+<span class="s2">FROM RankedData</span>
+<span class="s2">WHERE row_num = 1;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Ejecutar la consulta</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+<span class="c1"># Mostrar el resultado</span>
+<span class="n">average_data</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El promedio de los primeros valores de &#39;data&#39; para cada &#39;timestamp&#39; con &#39;sunlight&#39; = 0 es: </span><span class="si">{</span><span class="n">average_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Cerrar la conexión</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+Al ejecutar el programa se obtiene el siguiente resultado:</p>
+<div class="arithmatex">\[
+\overline{x} = 1.0228689182508934
+\]</div>
+<p>Observando nuevamente la gráfica de la media temporal <span class="arithmatex">\(\overline{X}\)</span> cuando sunlight es cero la media se encuentra cerca de 1, por lo que, dado lo anterior se puede confirmar que hasta cierto punto el proceso es ergódico cuando es de noche.</p>
+<h2 id="conclusiones-de-seccion">Conclusiones de sección</h2>
+<p>A partir de las pruebas de estacionaridad y ergodicidad, se pudo observar que, analizando la totalidad del proceso este no se consideraría estacionario en sentido ámplio (wss) pero, cortando una sección de tiempo donde el proceso parece ser constante y realizando las pruebas de estacionaridad, se deduce que, para la noche el proceso es estacionario en sentido amplio. Por otra parte, a partir de las pruebas de ergodicidad se concluye que la media estadística es igual a la media temporal, por lo tanto, el proceso es ergódico durante la noche</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.tooltips", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

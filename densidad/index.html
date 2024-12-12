@@ -1,0 +1,661 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../parte_2/">
+      
+      
+        <link rel="next" href="../potencia_promedio/">
+      
+      
+      <link rel="icon" href="../img/plot.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+    
+    
+      
+        <title>Función de densidad de probabilidad - Avance de Proyecto de Programación de Modelos Probabilísticos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#funcion-de-densidad-de-probabilidad" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Avance de Proyecto de Programación de Modelos Probabilísticos" class="md-header__button md-logo" aria-label="Avance de Proyecto de Programación de Modelos Probabilísticos" data-md-component="logo">
+      
+  <img src="../img/plot.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Avance de Proyecto de Programación de Modelos Probabilísticos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Función de densidad de probabilidad
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../graficas_descriptivas_modelos_probabilidad/" class="md-tabs__link">
+        
+  
+    
+  
+  Gráfcas descriptivas y modelos de probabilidad
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../momentos_var1_var2/" class="md-tabs__link">
+        
+  
+    
+  
+  Momentos
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../parte_2/" class="md-tabs__link">
+        
+  
+    
+  
+  Procesos aleatorios
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Función de densidad de probabilidad
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../potencia_promedio/" class="md-tabs__link">
+        
+  
+    
+  
+  Potencia promedio del proceso aleatorio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../analisis_conclusiones/" class="md-tabs__link">
+        
+  
+    
+  
+  Análisis de resultados y conclusiones
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Avance de Proyecto de Programación de Modelos Probabilísticos" class="md-nav__button md-logo" aria-label="Avance de Proyecto de Programación de Modelos Probabilísticos" data-md-component="logo">
+      
+  <img src="../img/plot.png" alt="logo">
+
+    </a>
+    Avance de Proyecto de Programación de Modelos Probabilísticos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graficas_descriptivas_modelos_probabilidad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gráfcas descriptivas y modelos de probabilidad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../momentos_var1_var2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Momentos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parte_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Procesos aleatorios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Función de densidad de probabilidad
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Función de densidad de probabilidad
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funcion-de-densidad-de-probabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Función de densidad de probabilidad
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../potencia_promedio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Potencia promedio del proceso aleatorio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analisis_conclusiones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Análisis de resultados y conclusiones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Función de densidad de probabilidad</h1>
+
+<h2 id="funcion-de-densidad-de-probabilidad">Función de densidad de probabilidad</h2>
+<p>Para determinar la función de densidad de probabilidad del proceso aleatorio, es importante primero determinar el modelo de distribución del proceso. Esto se logra a través de la función fitter aplicado a los datos recopilados mediante el programa <code>distribucion.py</code> el cual se muestra a continuación:</p>
+<div class="highlight"><span class="filename">distribucion.py</span><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">from</span> <span class="nn">fitter</span> <span class="kn">import</span> <span class="n">Fitter</span>
+
+<span class="c1"># Conectar a la base de datos y cargar la tabla en un DataFrame</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;proyecto.db&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM test_data&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Filtrar los datos para minutes_from_midnight = 626.05</span>
+<span class="n">target_minutes</span> <span class="o">=</span> <span class="mf">460.1</span>
+<span class="n">filtered_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;minutes_from_midnight&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">target_minutes</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Verificar si hay datos disponibles después del filtro</span>
+<span class="k">if</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No se encontraron datos para minutes_from_midnight = </span><span class="si">{</span><span class="n">target_minutes</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Seleccionar las distribuciones que quieres probar</span>
+    <span class="n">distributions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="s1">&#39;expon&#39;</span><span class="p">,</span> <span class="s1">&#39;gompertz&#39;</span><span class="p">,</span> <span class="s1">&#39;levy&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;logistic&#39;</span><span class="p">,</span> <span class="s1">&#39;rayleigh&#39;</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Ajustar las distribuciones a los datos de &#39;filtered_data&#39;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">Fitter</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">,</span> <span class="n">distributions</span><span class="o">=</span><span class="n">distributions</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>  <span class="c1"># Ajusta las distribuciones a los datos</span>
+
+    <span class="c1"># Obtener la mejor distribución para estos datos</span>
+    <span class="n">best_dist</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_best</span><span class="p">()</span>
+    <span class="n">best_dist_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">best_dist</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Nombre de la mejor distribución</span>
+    <span class="n">best_dist_params</span> <span class="o">=</span> <span class="n">best_dist</span><span class="p">[</span><span class="n">best_dist_name</span><span class="p">]</span>  <span class="c1"># Parámetros de la mejor distribución</span>
+
+    <span class="c1"># Imprimir el resultado</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Para minutes_from_midnight = </span><span class="si">{</span><span class="n">target_minutes</span><span class="si">}</span><span class="s2">, la mejor distribución es: &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">best_dist_name</span><span class="si">}</span><span class="s2">, con los parámetros: </span><span class="si">{</span><span class="n">best_dist_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Este código permite obtener el modelo de distribución que mejor se ajusto con base en los modelos posibles para el proceso. Al realizar diversas pruebas con distintos valores de tiempo, se observa que la distribución que mejor se ajusta es la exponencial "expon", algunos rezultados de las pruebas realizadas a tres instantes distintos se muestran a continuación:</p>
+<p><code>Para minutes_from_midnight = -649.85, la mejor distribución es: expon, con los parámetros: {'loc': 0.12535911861064752, 'scale': 2.8123496320947368}</code> </p>
+<p><code>Para minutes_from_midnight = -54.45, la mejor distribución es: expon, con los parámetros: {'loc': 0.02121149149570576, 'scale': 0.812807395554624}</code></p>
+<p><code>Para minutes_from_midnight = 114, la mejor distribución es: expon, con los parámetros: {'loc': 0.022537642544328218, 'scale': 0.9522438596968169}</code></p>
+<p><code>Para minutes_from_midnight = 553.5, la mejor distribución es: expon, con los parámetros: {'loc': 0.04768446100892672, 'scale': 2.6305185025999633}</code></p>
+<p>Como se observa, los parámetros de la distribución cambian con el tiempo y siguen la función de densidad de probabilidad exponencial. Utilizando el programa <code>parameters.py</code> se crea una nueva base de datos llamada <code>parameters.db</code> cuya tabla es <code>parameters_data</code>. Se extraen los datos de timestamp, minutes_from_midnight y sunlight de <code>proyecto.db</code> y luego, con el programa <code>parameters_expon.py</code> se calculan los parámetros <code>loc</code> y <code>scale</code> de los datos según su timestamp siguiendo una distribución exponencial aprovechando el comando <code>fit.expon</code>. En la siguiente gráfica se muestra el histograma de los datos asociados con la noche (sunlight = 0) con el fin de observar la curva exponencial.
+<img alt="Distribucion exponencial" src="../img/distribucion_expon.png" /></p>
+<p>Una vez sabiendo el modelo de la distribución, cuya función de densidad de probabilidad sigue la siguiente ecuación:</p>
+<div class="arithmatex">\[f(x, \lambda) =
+\begin{cases}
+\lambda e^{-\lambda x}, &amp; \text{si } x \geq 0 \\
+0, &amp; \text{si } x &lt; 0
+\end{cases}\]</div>
+<p>donde <span class="arithmatex">\(\lambda\)</span> depende del tiempo, es decir que se puede reescribir de la siguiente forma:</p>
+<div class="arithmatex">\[f(x, \lambda(t)) =
+\begin{cases}
+\lambda(t) e^{-\lambda(t) x}, &amp; \text{si } x \geq 0 \\
+0, &amp; \text{si } x &lt; 0
+\end{cases}\]</div>
+<p>Ahora, para encontrar el parámetro <span class="arithmatex">\(\lambda\)</span> se utiliza la media temporal variante, es decir cuando sunlight=1. Para ello, se apela a la siguiente figura:</p>
+<p><img alt="Ecuación de mejor ajuste de la media temporal" src="../img/grafico_ajustado_mejor_ajuste.png" /></p>
+<p>Por teoría, se sabe que la ecuación de ajuste observada en la gráfica es <span class="arithmatex">\(\mu(t)\)</span> y que existe una relación entre el parámetro <span class="arithmatex">\(\lambda\)</span> y <span class="arithmatex">\(\mu\)</span> como se muestra en la siguiente ecuación:</p>
+<div class="arithmatex">\[
+\mu(t) = \frac{1}{\lambda(t)}
+\]</div>
+<p>Para efectos simples, de acuerdo con la documentación para las funciones de densidad de probabilidad de fitter, el parámetro loc para una exponencial es típicamente cero, mientras que el parámetro scale tiene la particularidad de ser igual al inverso del parámetro lambda, es decir que la curva de mejor ajuste para la media variante con el tiempo es igual a la curva de mejor ajuste del parámetro scale.</p>
+<div class="arithmatex">\[
+\lambda(t) = \frac{1}{scale(t)} =\frac{1}{-0,000017t^{2}+0,024163t-5,505220}
+\]</div>
+<p>Finalmente, la función de densidad de probabilidad quedaría de la siguiente manera:</p>
+<div class="arithmatex">\[f(t, \lambda(t)) =
+\begin{cases}
+\left(\frac{1}{-0,000017t^{2}+0,024163t-5,505220}\right)e^{-\left(\frac{1}{-0,000017t^{2}+0,024163t-5,505220}\right)t}, &amp; \text{si } t \geq 0 \\
+0, &amp; \text{si } t &lt; 0
+\end{cases}\]</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.tooltips", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
